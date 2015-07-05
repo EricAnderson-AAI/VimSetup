@@ -13,3 +13,8 @@ then **cd** to the **bundle** directory and clone the following repos:
 
 [Vim Powerline](https://github.com/Lokaltog/vim-powerline.git)
 
+## Powerline fonts
+
+Clone the following repo and put the fonts in the proper directory:
+
+[Powerline Fonts](https://github.com/powerline/fonts.git)
