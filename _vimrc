@@ -46,10 +46,10 @@ colorscheme badwolf
 set rtp+=~/vimfiles/bundle/Vundle.vim
 
 " alternatively, pass a path where Vundle should install plugins
-call vundle#begin('~/vimfiles/plugins')
+" call vundle#begin('~/vimfiles/plugins')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Plugin 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -74,7 +74,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'user/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
-call vundle#end()           
+" call vundle#end()           
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
