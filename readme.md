@@ -29,4 +29,5 @@ cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:%USERPROFILE%
 
 -cur_console:d:%USERPROFILE% cmd /k "%ConEmuDir%\..\init.bat" -cur_console:n:sT50H
 
-#-cur_console:d:%USERPROFILE% cmd /k "%ConEmuDir%\..\init.bat" -cur_console:n:sT50H
+// Comment out the following line
+-cur_console:d:%USERPROFILE% cmd /k "%ConEmuDir%\..\init.bat" -cur_console:n:sT50H
