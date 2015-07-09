@@ -2,8 +2,11 @@
 " <space> opens fold 
 " <za> closes folds
 " Typing :set runtimepath? will display the helptags
+
 " To debug _vimrc run the following command
 " vim -V9vim.log _vimrc
+
+" use :command to see the current commands
 " }}}
 
 "Vim commands {{{
@@ -21,6 +24,8 @@ syntax on
 
 " To ignore plugin indent changes
 filetype indent on 
+
+filetype plugin on
 " }}}
 
 "Folding {{{"
@@ -78,6 +83,7 @@ inoremap jk <esc>
 
 " Use <leader>l to toggle display of whitespace
 nmap <leader>l :set list!<CR>
+
 " automatically change window's cwd to file's dir
 set autochdir
 
@@ -114,7 +120,7 @@ let g:pymode = 1
 let g:pymode_run = 1
 let g:pymode_run_bind = "<C-S-e>"
 
-" Turn on pymode rope
+" Turn on rope support
 let g:pymode_rope = 1
 
 " Documentation
@@ -140,6 +146,9 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Trim unused white spaces on save
+let g:pymode_trim_whitespaces = 1
 
 " Don't autofold code
 let g:pymode_folding = 0

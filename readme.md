@@ -18,3 +18,15 @@ then **cd** to the **bundle** directory and clone the following repos:
 Clone the following repo and put the fonts in the proper directory:
 
 [Powerline Fonts](https://github.com/powerline/fonts.git)
+
+## Cmder setup
+
+Add the following to the {cmd} task:
+
+cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:%USERPROFILE%
+
+-cur_console:d:%USERPROFILE% cmd /k "%ConEmuDir%\..\init.bat" -cur_console:n:sT25V
+
+-cur_console:d:%USERPROFILE% cmd /k "%ConEmuDir%\..\init.bat" -cur_console:n:sT50H
+
+#-cur_console:d:%USERPROFILE% cmd /k "%ConEmuDir%\..\init.bat" -cur_console:n:sT50H
