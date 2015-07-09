@@ -1,28 +1,40 @@
-" Pathogen setup
-"call pathogen#runtime_append_all_bundles()
-set nocompatible           
+"Notes {{{
+" <space> opens fold 
+" <za> closes folds
+" Typing :set runtimepath? will display the helptags
+" To debug _vimrc run the following command
+" vim -V9vim.log _vimrc
+" }}}
+
+"Vim commands {{{
+" Ctrl+y or u moves the screen up
+" Ctrl+e or d moves the screen down
+" gg+VG select all 
+" }}}
+
+"Pathogen setup  {{{         
+set nocompatible
 filetype off 
 
-call pathogen#infect()
-call pathogen#helptags()
-
-filetype plugin indent on 
+execute pathogen#infect()
 syntax on
 
-" Toggle NerdTree with F2 key
-map <F2> :NERDTreeToggle<CR>
+" To ignore plugin indent changes
+filetype indent on 
+" }}}
 
-" Highlight excess line length
-augroup vimrc_autocmds
-    autocmd!
-    " highlight characters past column 120
-    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType python match Excess /\%120v.*/
-    autocmd FileType python set nowrap
-    augroup END
-	
-	
-" Powerline setup
+"Folding {{{"
+set foldmethod=marker
+set foldlevel=0
+set modelines=1
+" }}}
+
+"NERDTree {{{"
+" Toggle NERDTree with F2 key
+map <F2> :NERDTreeToggle<CR>
+" }}}
+
+"Powerline setup {{{
 " terminal types: amiga beos-ansi ansi pcansi win32 vt320 vt52 xterm iris-ansi debug dumb
 set term=xterm
 set encoding=utf-8
@@ -34,65 +46,54 @@ let g:Powerline_mode_V="V·LINE"
 let g:Powerline_mode_cv="V·BLOCK"
 let g:Powerline_mode_S="S·LINE"
 let g:Powerline_mode_cs="S·BLOCK"
+" }}}
 
+"Misc {{{"
+Helptags
 
+" Highlight excess line length
+augroup vimrc_autocmds
+    autocmd!
+    " highlight characters past column 120
+    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
+    autocmd FileType python match Excess /\%120v.*/
+    autocmd FileType python set nowrap
+    augroup END
+	
 " Vim syntax highlight
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
+
+" Set vim color scheme
 colorscheme badwolf
 
+" highlight current line
+set cursorline    
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/vimfiles/bundle/Vundle.vim
+" leader is comma   
+" let mapleader=','      
 
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/vimfiles/plugins')
+" jk is escape
+inoremap jk <esc>
 
-" let Vundle manage Vundle, required
-" Plugin 'gmarik/Vundle.vim'
+" Use <leader>l to toggle display of whitespace
+nmap <leader>l :set list!<CR>
+" automatically change window's cwd to file's dir
+set autochdir
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'git://github.com/powerline/powerline.git'
+" I'm prefer spaces to tabs
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
+" more subtle popup colors 
+if has ('gui_running')
+    highlight Pmenu guibg=#cccccc gui=bold    
+endif
+" }}}
 
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
+"Python-mode {{{
 
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim'}
-
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-" call vundle#end()           
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-" filetype plugin indent on 
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-
-
-
-" Python-mode
 " Activate rope
 " Keys:
 " K             Show python docs
@@ -105,6 +106,15 @@ set rtp+=~/vimfiles/bundle/Vundle.vim
 " ]]            Jump on next class or function (normal, visual, operator modes)
 " [M            Jump on previous class or method (normal, visual, operator modes)
 " ]M            Jump on next class or method (normal, visual, operator modes)
+
+" Turn on the whole plugin
+let g:pymode = 1
+
+" Turn on the run code script
+let g:pymode_run = 1
+let g:pymode_run_bind = "<C-S-e>"
+
+" Turn on pymode rope
 let g:pymode_rope = 1
 
 " Documentation
@@ -113,7 +123,8 @@ let g:pymode_doc_key = 'K'
 
 "Linting
 let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_checker = ['pyflakes' ,'pep8', 'mccabe']
+
 " Auto check on save
 let g:pymode_lint_write = 1
 
@@ -132,23 +143,11 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " Don't autofold code
 let g:pymode_folding = 0
+" }}}
 
+"Enable line numbers {{{
 
-
-" Use <leader>l to toggle display of whitespace
-nmap <leader>l :set list!<CR>
-" automatically change window's cwd to file's dir
-set autochdir
-
-" I'm prefer spaces to tabs
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-" more subtle popup colors 
-if has ('gui_running')
-    highlight Pmenu guibg=#cccccc gui=bold    
-endif
-
-" Enable line numbers
 set number
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
