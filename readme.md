@@ -13,6 +13,12 @@ then **cd** to the **bundle** directory and clone the following repos:
 
 [Vim Powerline](https://github.com/Lokaltog/vim-powerline.git)
 
+[Ag vim](https://github.com/rking/ag.vim)
+
+[Vim Airline](https://github.com/bling/vim-airline)
+
+[Surround vim](https://github.com/tpope/vim-surround)
+
 ## Powerline fonts
 
 Clone the following repo and put the fonts in the proper directory:
