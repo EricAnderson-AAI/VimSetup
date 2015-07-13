@@ -19,6 +19,10 @@ then **cd** to the **bundle** directory and clone the following repos:
 
 [Surround vim](https://github.com/tpope/vim-surround)
 
+[Vim better whitespace](https://github.com/ntpeters/vim-better-whitespace)
+
+[Vim signify](https://github.com/mhinz/vim-signify)
+
 ## Powerline fonts
 
 Clone the following repo and put the fonts in the proper directory:
