@@ -79,6 +79,8 @@ Plug 'miyakogi/conoline.vim'
 Plug 'easymotion/vim-easymotion'
 " Adds font icons to web developer file types
 Plug 'ryanoasis/vim-devicons'
+" Fuzzy finder
+Plug 'kien/ctrlp.vim'
 
 call plug#end()
 
@@ -114,14 +116,28 @@ set formatoptions=rq
 
 " Relative or absolute number lines
 function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
+  if(&nu == 1)
+    echo 'Relative number mode'
+    set nu!
+    set rnu
   else
-    set relativenumber
+    echo 'Absolute number mode'
+    set nornu
+    set nu
   endif
 endfunction
 
-nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <C-n> :call NumberToggle()<CR>
+
+" Automatically use absolute line numbers when we're in insert mode
+" And relative numbers when we're in normal mode
+autocmd InsertEnter * :set nornu | :set nu
+autocmd InsertLeave * :set rnu | :set nu!
+
+
+" =====================================
+" Mappings, Commands, and Auto Commands
+" =====================================
 
 " ==========
 " UI Options
@@ -181,7 +197,7 @@ augroup dotvimrc
   au! BufWritePost * Neomake
   " Source Vimrc on save
   au! BufWritePost $MYVIMRC source $MYVIMRC
-        \| source ~/.vim/plugged/vim-neatstatus/after/plugin/neatstatus.vim
+"        \| source ~/.vim/plugged/vim-neatstatus/after/plugin/neatstatus.vim
   " Reopen at last location
   au! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != 'gitcommit'
         \| exe "normal! g'\"" | endif
@@ -306,13 +322,13 @@ vnoremap <Leader>gO :Gbrowse!<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 
 " =================
-" Conoline.vim
+" Conoline.vim Mappings
 " =================
 
 let g:conoline_auto_enable = 1
 
 " =================
-" Easymotion
+" Easymotion Mappings
 " =================
 
 map / <Plug>(easymotion-sn)
@@ -323,5 +339,12 @@ omap / <Plug>(easymotion-tn)
 " different highlight method and have some other features )
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
+
+
+" =================
+" Ctrlp Mappings
+" =================
+
+let g:ctrlp_working_path_mode = 'ra'
 
 " vim:set ft=vim et sw=2:
